@@ -10,7 +10,7 @@ if(! $conn )
 
 mysql_select_db('trackme');
 
-if($_GET['name'] == ''  || $_GET['lat'] == '' || $_GET['long'] == '' || $_GET['alt'] == '') 
+if($_GET['name'] == ''  || $_GET['lat'] == '' || $_GET['long'] == '' || $_GET['speed'] == '') 
 {  
   die('Insufficient data');
 }
@@ -27,7 +27,7 @@ else
     $result = mysql_query( $sql, $conn );
     $row = mysql_fetch_assoc($result);
   }
-  $sql = sprintf('INSERT INTO points VALUES (NULL, %d, %f, %f, %f, NOW())', $row['id'], $_GET['lat'], $_GET['long'], $_GET['alt']);
+  $sql = sprintf('INSERT INTO points VALUES (NULL, %d, %f, %f, %f, NOW())', $row['id'], $_GET['lat'], $_GET['long'], $_GET['speed']);
   $result = mysql_query( $sql, $conn );
   if(!empty($result))
   {
