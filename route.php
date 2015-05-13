@@ -12,7 +12,7 @@ mysql_select_db('trackme');
 
 if($_GET['name'] == '')
 {  
-  $sql = 'SELECT * FROM route';
+  $sql = 'SELECT * FROM route ORDER BY id DESC LIMIT 5';
 }
 else
 {
