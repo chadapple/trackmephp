@@ -16,7 +16,7 @@ if($_GET['name'] == '')
 }
 else
 {
-  $sql = sprintf('SELECT p.latitude,p.longitude,p.speed,p.time
+  $sql = sprintf('SELECT p.latitude,p.longitude,p.speed
     FROM points p, route r
     WHERE p.routeid=r.id AND r.name=\'%s\'
     ORDER BY p.id', $_GET['name']);
