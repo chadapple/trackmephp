@@ -11,15 +11,20 @@ if(! $conn )
 mysql_select_db('trackme');
 
 if($_GET['name'] == '')
-{  
+{
   $sql = 'SELECT * FROM route ORDER BY id DESC LIMIT 5';
 }
 else
 {
-  $sql = sprintf('SELECT p.latitude,p.longitude,p.speed
+  $id = 0;
+  if($_GET['id'] != '')
+  {
+    $id = $_GET['id'];
+  }
+  $sql = sprintf('SELECT p.id,p.latitude,p.longitude,p.speed
     FROM points p, route r
-    WHERE p.routeid=r.id AND r.name=\'%s\'
-    ORDER BY p.id', $_GET['name']);
+    WHERE p.routeid=r.id AND r.name=\'%s\' AND p.id > \'%s\'
+    ORDER BY p.id', $_GET['name'], $id);
 }
 
 $result = mysql_query( $sql, $conn );
